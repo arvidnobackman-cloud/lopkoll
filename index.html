@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Löpkoll">
+<meta name="theme-color" content="#111418">
+<title>Löpkoll</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="ikon-180.png">
+<link rel="icon" href="ikon-192.png">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+<!-- Löpkoll – en löparapp: mäter hur långt och hur fort man springer, och berättar kul fakta om löpturen. -->
+
+<!-- ===== Startsidan ===== -->
+<section id="hem" class="sida">
+  <header class="hem-topp">
+    <div class="hej" id="hej">Hej!</div>
+    <div class="liten-text" id="vecka"></div>
+  </header>
+  <button class="startknapp" id="starta"><span>STARTA</span><small>löptur</small></button>
+  <div class="rutor" id="summa"></div>
+  <h2>Rekord 🏆</h2>
+  <div class="kort" id="rekord"></div>
+  <h2>De senaste veckorna</h2>
+  <div class="kort"><canvas id="veckodiagram" height="140"></canvas></div>
+  <h2>Löpturer</h2>
+  <div id="historik"></div>
+  <h2>Inställningar</h2>
+  <div class="kort">
+    <label class="rad">Namn <input id="namn" maxlength="20" placeholder="Pappa"></label>
+    <label class="rad">Vikt (kg, för kalorier) <input id="vikt" inputmode="numeric" maxlength="3"></label>
+    <label class="rad">Röst som säger tempot <input type="checkbox" id="röst"></label>
+    <div class="knapprad"><button class="liten" id="låtsas">Prova med en låtsaslöptur</button></div>
+    <p class="tips">Låtsasläget springer 2 km på en minut, så att man kan se hur appen fungerar.</p>
+  </div>
+  <p class="tips mitt" id="gps-info"></p>
+</section>
+
+<!-- ===== Under löpturen ===== -->
+<section id="spring" class="sida" hidden>
+  <div class="gps" id="gps-status">Letar efter GPS ...</div>
+  <div class="stor-siffra"><span id="s-km">0,00</span><small>km</small></div>
+  <div class="tre">
+    <div><b id="s-tid">0:00</b><small>tid</small></div>
+    <div><b id="s-tempo">–:––</b><small>tempo nu /km</small></div>
+    <div><b id="s-snitt">–:––</b><small>snitt /km</small></div>
+  </div>
+  <canvas id="s-karta" class="karta"></canvas>
+  <div class="knappar">
+    <button class="rund gul" id="paus">Paus</button>
+    <button class="rund röd" id="stopp"><span>Stopp</span><small>håll inne</small><i id="stopp-fyll"></i></button>
+    <button class="rund grå" id="lås">🔒<small>Lås</small></button>
+  </div>
+</section>
+
+<!-- Låset: skärmen tål tryck i fickan. Håll inne för att låsa upp. -->
+<div class="låst" id="låst" hidden>
+  <div class="låst-km"><span id="l-km">0,00</span> km</div>
+  <div class="låst-tid" id="l-tid">0:00</div>
+  <button class="låsupp" id="låsupp">🔓 Håll inne för att låsa upp<i id="låsupp-fyll"></i></button>
+</div>
+
+<!-- ===== Efter löpturen ===== -->
+<section id="klar" class="sida" hidden>
+  <div class="klar-topp">
+    <div class="hej" id="k-rubrik">Bra sprunget!</div>
+    <div class="liten-text" id="k-datum"></div>
+  </div>
+  <div class="rekordbanner" id="k-rekord" hidden></div>
+  <div class="rutor" id="k-siffror"></div>
+  <canvas id="k-karta" class="karta"></canvas>
+  <h2>Kilometer för kilometer</h2>
+  <div class="kort" id="k-km"></div>
+  <h2>Kul fakta om löpturen</h2>
+  <div class="kort" id="k-fakta"></div>
+  <div class="knapprad mitt">
+    <button class="liten farlig" id="k-ta-bort">Ta bort löpturen</button>
+    <button class="liten fyllt" id="k-tillbaka">Klar</button>
+  </div>
+</section>
+
+<!-- En egen fråga-ruta -->
+<div class="bakgrund" id="fråga" hidden>
+  <div class="ruta">
+    <h3 id="fråga-text"></h3>
+    <div class="knapprad"><button class="liten" id="fråga-nej">Avbryt</button><button class="liten farlig" id="fråga-ja">Ja</button></div>
+  </div>
+</div>
+
+<!-- Julhälsningen som visas första gången -->
+<div class="bakgrund" id="hälsning" hidden>
+  <div class="ruta hälsning">
+    <div class="tomte">🎄🏃‍♂️🎁</div>
+    <h3 id="hälsning-rubrik"></h3>
+    <p id="hälsning-text"></p>
+    <button class="liten fyllt" id="hälsning-ok">Tack! Nu springer vi!</button>
+  </div>
+</div>
+
+<div class="meddelande" id="meddelande" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

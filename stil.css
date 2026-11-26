@@ -1,0 +1,83 @@
+:root { --bak: #111418; --kort: #1c2128; --text: #f2f4f6; --grå: #8b949e; --orange: #ff7a1a; --grön: #3ddc84; --röd: #f0484f; --gul: #ffc531; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: var(--bak); color: var(--text); font-family: -apple-system, system-ui, "Segoe UI", sans-serif; font-size: 17px; }
+.sida { padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 30px); max-width: 560px; margin: auto; }
+[hidden] { display: none !important; }
+.hej { font-size: 30px; font-weight: 800; }
+.liten-text { color: var(--grå); margin-top: 4px; }
+h2 { font-size: 19px; margin: 26px 2px 10px; }
+.kort { background: var(--kort); border-radius: 16px; padding: 14px; }
+.tips { color: var(--grå); font-size: 13px; }
+.mitt { text-align: center; justify-content: center; }
+button { font: inherit; border: none; color: inherit; cursor: pointer; }
+.startknapp { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 190px; height: 190px; margin: 26px auto 22px;
+  border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ff9a4a, var(--orange) 60%, #d85a00); box-shadow: 0 10px 40px #ff7a1a55; }
+.startknapp span { font-size: 34px; font-weight: 900; letter-spacing: 1px; }
+.startknapp small { opacity: .85; }
+.startknapp:active, .liten:active, .rund:active { transform: scale(.96); }
+.rutor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.rutor div { background: var(--kort); border-radius: 14px; padding: 12px 6px; text-align: center; }
+.rutor b { display: block; font-size: 21px; font-variant-numeric: tabular-nums; }
+.rutor small { color: var(--grå); font-size: 12px; }
+.rad { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; }
+.rad input:not([type]) , .rad input[inputmode] { width: 120px; font: inherit; padding: 8px; border-radius: 10px; border: 1px solid #333a44; background: #12161b; color: var(--text); text-align: right; }
+.rad input[type=checkbox] { width: 24px; height: 24px; accent-color: var(--orange); }
+.knapprad { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.liten { background: #2a313a; padding: 10px 16px; border-radius: 12px; font-weight: 600; }
+.liten.fyllt { background: var(--orange); color: #fff; }
+.liten.farlig { background: #3a1e22; color: #ff8a8f; }
+.rek { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #262c34; }
+.rek:last-child { border: none; }
+.rek span:last-child { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tur { display: flex; align-items: center; gap: 12px; background: var(--kort); border-radius: 14px; padding: 12px 14px; margin-bottom: 8px; }
+.tur .km { font-size: 22px; font-weight: 800; min-width: 74px; font-variant-numeric: tabular-nums; }
+.tur .info { flex: 1; color: var(--grå); font-size: 14px; }
+.tur .info b { color: var(--text); font-weight: 600; }
+.tom { color: var(--grå); text-align: center; padding: 14px; background: var(--kort); border-radius: 14px; }
+canvas { width: 100%; display: block; }
+/* Under löpturen */
+#spring { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+.gps { text-align: center; color: var(--grå); font-size: 14px; }
+.gps.bra { color: var(--grön); }
+.gps.dålig { color: var(--gul); }
+.stor-siffra { text-align: center; margin: 10px 0 4px; }
+.stor-siffra span { font-size: 92px; font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: -2px; line-height: 1; }
+.stor-siffra small { display: block; color: var(--grå); font-size: 18px; }
+.tre { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; margin: 14px 0; }
+.tre b { display: block; font-size: 30px; font-variant-numeric: tabular-nums; }
+.tre small { color: var(--grå); font-size: 12px; }
+.karta { background: var(--kort); border-radius: 16px; height: 34vh; flex: 1; min-height: 140px; }
+#k-karta { height: 240px; margin-top: 12px; }
+.knappar { display: flex; justify-content: space-around; align-items: center; margin-top: 18px; }
+.rund { width: 92px; height: 92px; border-radius: 50%; font-weight: 800; font-size: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.rund small { font-size: 11px; font-weight: 500; opacity: .8; }
+.rund.gul { background: var(--gul); color: #222; }
+.rund.röd { background: var(--röd); width: 104px; height: 104px; }
+.rund.grå { background: #2a313a; font-size: 26px; }
+.rund i, .låsupp i { position: absolute; left: 0; bottom: 0; width: 100%; height: 0; background: #0005; pointer-events: none; }
+.rund span, .rund small { position: relative; z-index: 1; }
+.låst { position: fixed; inset: 0; z-index: 30; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+.låst-km { font-size: 64px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.låst-km span { color: var(--orange); }
+.låst-tid { font-size: 34px; color: var(--grå); font-variant-numeric: tabular-nums; }
+.låsupp { position: relative; overflow: hidden; margin-top: 50px; background: #2a313a; padding: 18px 26px; border-radius: 40px; font-size: 16px; }
+/* Efter löpturen */
+.rekordbanner { margin-top: 14px; background: linear-gradient(90deg, #ffb31a, #ff7a1a); color: #231200; border-radius: 14px; padding: 12px 14px; font-weight: 700; }
+.klar-topp { margin-bottom: 14px; }
+#k-siffror { grid-template-columns: repeat(3, 1fr); }
+.split { display: grid; grid-template-columns: 34px 1fr 64px; align-items: center; gap: 8px; padding: 5px 0; font-variant-numeric: tabular-nums; }
+.split .stapel { height: 10px; border-radius: 5px; background: var(--orange); }
+.split .stapel.bäst { background: var(--grön); }
+.fakta { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid #262c34; line-height: 1.35; }
+.fakta:last-child { border: none; }
+.fakta span:first-child { font-size: 24px; }
+/* Rutor ovanpå */
+.bakgrund { position: fixed; inset: 0; background: #000a; z-index: 40; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.ruta { background: #1f252d; border-radius: 20px; padding: 22px; max-width: 380px; width: 100%; }
+.ruta h3 { margin: 0 0 8px; text-align: center; }
+.ruta .knapprad { justify-content: flex-end; }
+.hälsning { text-align: center; }
+.hälsning .knapprad, .hälsning button { margin-top: 14px; }
+.tomte { font-size: 44px; }
+.meddelande { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 24px); transform: translateX(-50%); background: #fff; color: #111;
+  padding: 12px 18px; border-radius: 14px; z-index: 50; font-weight: 600; max-width: 92%; text-align: center; }
